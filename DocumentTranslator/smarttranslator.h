@@ -16,14 +16,15 @@ public:
     explicit SmartTranslator(QWidget *parent = nullptr);
     ~SmartTranslator();
 
-//    void loadFile(const QString &fileName);
+    void loadFile(const QString &fileName);
 
-//private slots:
-//    void newFile();
-//    void open();
-//    void save();
-//    void saveAs();
-//    void about();
+private slots:
+    void actionNew();
+    void actionOpen();
+    void actionSave();
+    void actionSaveAs();
+    void actionRecent();
+    void actionAbout();
 
 //    void documentWasModified();
 

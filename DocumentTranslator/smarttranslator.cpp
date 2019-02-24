@@ -12,3 +12,38 @@ SmartTranslator::~SmartTranslator()
 {
     delete ui;
 }
+
+void SmartTranslator::loadFile(const QString &fileName)
+{
+
+}
+
+void SmartTranslator::actionNew()
+{
+
+}
+
+void SmartTranslator::actionOpen()
+{
+
+}
+
+void SmartTranslator::actionSave()
+{
+
+}
+
+void SmartTranslator::actionSaveAs()
+{
+
+}
+
+void SmartTranslator::actionRecent()
+{
+
+}
+
+void SmartTranslator::actionAbout()
+{
+
+}
