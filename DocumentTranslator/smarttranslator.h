@@ -19,24 +19,17 @@ public:
     void loadFile(const QString &fileName);
 
 private slots:
-    void actionNew();
-    void actionOpen();
-    void actionSave();
-    void actionSaveAs();
-    void actionRecent();
+    void actionHelp();
     void actionAbout();
+    void actionExit();
 
-//    void documentWasModified();
+private:
+//    void createMenus();
+    void createActions();
 
 //private:
-//    void createActions();
-//    void createStatusBar();
-//    void readSettings();
-//    void writeSettings();
-//    bool maybeSave();
-//    bool saveFile(const QString &fileName);
-//    void setCurrentFile(const QString &fiileName);
-//    QString strippedName(const QString &fullFileName);
+//    QMenu *fileMenu;
+//    QMenu *aboutMenu;
 
 private:
     Ui::SmartTranslator *ui;
