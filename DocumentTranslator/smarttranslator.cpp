@@ -44,7 +44,7 @@ void SmartTranslator::loadFile(const QString &fileName)
 void SmartTranslator::actionAbout()
 {
     QMessageBox::about(this, tr("About Application"),
-                tr("The <b>SmartTranslator</b> shows a smart translator based on goole translate"));
+                tr("The <b>SmartTranslator</b> shows a smart translator based on Google translate"));
 }
 
 void SmartTranslator::actionExit()
