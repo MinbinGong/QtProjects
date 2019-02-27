@@ -43,24 +43,21 @@ void SmartTranslator::loadFile(const QString &fileName)
 
 void SmartTranslator::actionAbout()
 {
-    QMessageBox::about(this, tr("About Application"),
+    QMessageBox::about(this, tr("SmartTranslator"),
                 tr("The <b>SmartTranslator</b> shows a smart translator based on Google translate"));
 }
 
 void SmartTranslator::actionExit()
 {
-
+    QApplication::quit();
 }
 
 void SmartTranslator::actionHelp()
 {
-
+    QMessageBox::about(this, tr("Help"),
+                tr("Please try to contact <b>Wayne Gong</b>"
+                   "\ngongwayne@hotmail.com"));
 }
-
-//void SmartTranslator::createMenus()
-//{
-
-//}
 
 void SmartTranslator::createActions()
 {
@@ -72,4 +69,8 @@ void SmartTranslator::createActions()
 
     connect(ui->actionAbout, &QAction::triggered, this, &SmartTranslator::actionAbout);
     ui->menuAbout->addAction(ui->actionAbout);
+}
+
+void SmartTranslator::on_buttonSrc_clicked()
+{
 }

@@ -26,13 +26,16 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        smarttranslator.cpp
+        smarttranslator.cpp \
+    openwindow.cpp
 
 HEADERS += \
-        smarttranslator.h
+        smarttranslator.h \
+    openwindow.h
 
 FORMS += \
-        smarttranslator.ui
+        smarttranslator.ui \
+    openwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

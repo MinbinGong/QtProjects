@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QString>
 
+//#include "openwindow.h"
+
 namespace Ui {
 class SmartTranslator;
 }
@@ -23,13 +25,10 @@ private slots:
     void actionAbout();
     void actionExit();
 
-private:
-//    void createMenus();
-    void createActions();
+    void on_buttonSrc_clicked();
 
-//private:
-//    QMenu *fileMenu;
-//    QMenu *aboutMenu;
+private:
+    void createActions();
 
 private:
     Ui::SmartTranslator *ui;
