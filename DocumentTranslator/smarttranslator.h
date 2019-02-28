@@ -35,7 +35,9 @@ private:
 
 private:
     Ui::SmartTranslator *ui;
+
     QString fileName;
+    QString fileContent;
 };
 
 #endif // SMARTTRANSLATOR_H

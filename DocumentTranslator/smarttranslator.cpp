@@ -33,9 +33,7 @@ void SmartTranslator::loadFile(const QString &fileName)
     }
 
     QTextStream in(&file);
-    QString content = in.readAll();
-//    QMessageBox::about(this, tr("Open"),
-//                       tr(content.toUtf8().constData()));
+    fileContent = in.readAll();
 }
 
 void SmartTranslator::actionAbout()
@@ -71,44 +69,45 @@ void SmartTranslator::createActions()
 void SmartTranslator::on_buttonSrc_clicked()
 {
     fileName = QFileDialog::getOpenFileName(this,
-             tr("Open File"), "/home", tr("PDF Files (*.pdf)"));
+             tr("Open File"), "/home", tr("TXT Files (*.txt)"));
     ui->lineEdit->setText(fileName);
 }
 
 void SmartTranslator::on_buttonTranslate_clicked()
 {
-//    QMessageBox::about(this, tr("Open"),
-//                tr(fileName.toUtf8().constData()));
     loadFile(fileName);
+    QString translated = translate(fileContent, QString("en"), QString("zh-CN"));
+    QMessageBox::about(this, tr("Translated"),
+                       tr(translated.toUtf8().constData()));
 }
 
 QString SmartTranslator::translate(QString keyword, QString from, QString to)
 {
-//    //Translate URL
+    //Translate URL
 //    QString url = QString("http://translate.google.com/translate_a/t?client=t&text=%0&hl=%1&sl=%2&tl=%1&multires=1&prev=enter&oc=2&ssel=0&tsel=0&uptl=%1&sc=1").arg(keyword).arg(to).arg(from);
+    QString url = QString("https://translate.google.com/?tr=f&hl=en#view=home&op=docs&sl=%1&tl=%2").arg(from).arg(to);
 
-//    QNetworkAccessManager manager;
-//    QNetworkRequest request(url);
-//    QNetworkReply *reply = manager.get(request);
+    QNetworkAccessManager manager;
+    QNetworkRequest request(url);
+    QNetworkReply *reply = manager.get(request);
 
-//    //Get reply from Google
-//    do {
-//        QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-//    } while(!reply->isFinished());
+    //Get reply from Google
+    do {
+        QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+    } while(!reply->isFinished());
 
-//    //Convert to string
-//    QString translation(reply->readAll());
-//    reply->close();
+    //Convert to string
+    QString translation(reply->readAll());
+    reply->close();
 
-//    //Free memory
-//    delete reply;
+    //Free memory
+    delete reply;
 
-//    //Remove [[[" from the beginning
-//    translation = translation.replace("[[[\"", "");
+    //Remove [[[" from the beginning
+    translation = translation.replace("[[[\"", "");
 
-//    //Extract final translated string
-//    translation = translation.mid(0, translation.indexOf(",\"") - 1);
+    //Extract final translated string
+    translation = translation.mid(0, translation.indexOf(",\"") - 1);
 
-//    return translation;
-    return QString();
+    return translation;
 }
