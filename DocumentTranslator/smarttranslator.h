@@ -27,11 +27,16 @@ private slots:
 
     void on_buttonSrc_clicked();
 
+    void on_buttonTranslate_clicked();
+
 private:
     void createActions();
 
+    QString translate(QString keyword, QString from, QString to);
+
 private:
     Ui::SmartTranslator *ui;
+    QString fileName;
 };
 
 #endif // SMARTTRANSLATOR_H
