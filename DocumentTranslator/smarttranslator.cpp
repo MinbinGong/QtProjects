@@ -33,15 +33,9 @@ void SmartTranslator::loadFile(const QString &fileName)
     }
 
     QTextStream in(&file);
-#ifndef QT_NO_CURSOR
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-#endif
-
-    qDebug() << in.readAll();
-    ui->textBrowser->setPlainText(in.readAll());
-#ifndef QT_NO_CURSOR
-    QApplication::restoreOverrideCursor();
-#endif
+    QString content = in.readAll();
+//    QMessageBox::about(this, tr("Open"),
+//                       tr(content.toUtf8().constData()));
 }
 
 void SmartTranslator::actionAbout()
@@ -83,6 +77,8 @@ void SmartTranslator::on_buttonSrc_clicked()
 
 void SmartTranslator::on_buttonTranslate_clicked()
 {
+//    QMessageBox::about(this, tr("Open"),
+//                tr(fileName.toUtf8().constData()));
     loadFile(fileName);
 }
 

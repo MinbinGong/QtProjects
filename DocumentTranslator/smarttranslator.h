@@ -18,8 +18,6 @@ public:
     explicit SmartTranslator(QWidget *parent = nullptr);
     ~SmartTranslator();
 
-    void loadFile(const QString &fileName);
-
 private slots:
     void actionHelp();
     void actionAbout();
@@ -33,6 +31,7 @@ private:
     void createActions();
 
     QString translate(QString keyword, QString from, QString to);
+    void loadFile(const QString &fileName);
 
 private:
     Ui::SmartTranslator *ui;
