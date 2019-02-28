@@ -76,6 +76,8 @@ void SmartTranslator::on_buttonSrc_clicked()
 void SmartTranslator::on_buttonTranslate_clicked()
 {
     loadFile(fileName);
+//    QMessageBox::about(this, tr("Translated"),
+//                       tr(fileContent.toUtf8().constData()));
     QString translated = translate(fileContent, QString("en"), QString("zh-CN"));
     QMessageBox::about(this, tr("Translated"),
                        tr(translated.toUtf8().constData()));
@@ -84,8 +86,10 @@ void SmartTranslator::on_buttonTranslate_clicked()
 QString SmartTranslator::translate(QString keyword, QString from, QString to)
 {
     //Translate URL
+    //https://translate.google.com/?tr=f&hl=en#view=home&op=translate&sl=en&tl=zh-CN
+    QString url = QString("http://translate.google.com/?tr=f&hl=en#view=home&op=translate&sl=%1&tl=%2&text=%0").arg(keyword).arg(from).arg(to);
 //    QString url = QString("http://translate.google.com/translate_a/t?client=t&text=%0&hl=%1&sl=%2&tl=%1&multires=1&prev=enter&oc=2&ssel=0&tsel=0&uptl=%1&sc=1").arg(keyword).arg(to).arg(from);
-    QString url = QString("https://translate.google.com/?tr=f&hl=en#view=home&op=docs&sl=%1&tl=%2").arg(from).arg(to);
+//    QString url = QString("http://translate.google.com/translate_a/t?client=t&text=%0&hl=%1&sl=%2&tl=%1").arg(keyword).arg(to).arg(from);
 
     QNetworkAccessManager manager;
     QNetworkRequest request(url);
