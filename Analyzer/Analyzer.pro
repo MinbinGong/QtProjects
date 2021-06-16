@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui multimedia multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -9,11 +9,15 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    imagesettings.cpp \
     main.cpp \
-    analyzer.cpp
+    analyzer.cpp \
+    videosettings.cpp
 
 HEADERS += \
-    analyzer.h
+    analyzer.h \
+    imagesettings.h \
+    videosettings.h
 
 FORMS += \
     analyzer.ui
