@@ -1,35 +1,28 @@
-QT       += core gui
+QT       += core gui multimedia multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-TARGET =opencvtest
-TEMPLATE = app
 
 CONFIG += c++11
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
+    camera.cpp \
+    imagesettings.cpp \
     main.cpp \
-    mainwindow.cpp
+    videosettings.cpp
 
 HEADERS += \
-    mainwindow.h
+    camera.h \
+    imagesettings.h \
+    videosettings.h
 
 FORMS += \
-    mainwindow.ui
-
-#INCLUDEPATH += C:\opencv\build\include
-
-#LIBS += C:\opencv\build\bin\libopencv_core3414.dll
-#LIBS += C:\opencv\build\bin\libopencv_highgui3414.dll
-#LIBS += C:\opencv\build\bin\libopencv_imgcodecs3414.dll
-#LIBS += C:\opencv\build\bin\libopencv_imgproc3414.dll
-#LIBS += C:\opencv\build\bin\libopencv_features2d3414.dll
-#LIBS += C:\opencv\build\bin\libopencv_calib3d3414.dll
+    camera.ui \
+    imagesettings.ui \
+    videosettings.ui
 
 INCLUDEPATH += $$(OPENCV_SDK_DIR)/include
 
@@ -45,3 +38,6 @@ LIBS += -L$$(OPENCV_SDK_DIR)/x64/mingw/lib \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    images/shutter.svg
