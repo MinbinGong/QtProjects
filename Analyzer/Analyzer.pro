@@ -1,4 +1,4 @@
-QT       += core gui multimedia multimediawidgets
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,16 +17,6 @@ HEADERS += \
 
 FORMS += \
     analyzer.ui
-
-INCLUDEPATH += $$(OPENCV_SDK_DIR)/include
-
-LIBS += -L$$(OPENCV_SDK_DIR)/x64/mingw/lib \
-        -lopencv_core3414        \
-        -lopencv_highgui3414     \
-        -lopencv_imgcodecs3414   \
-        -lopencv_imgproc3414     \
-        -lopencv_features2d3414  \
-        -lopencv_calib3d3414
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

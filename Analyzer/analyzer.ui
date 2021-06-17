@@ -6,41 +6,41 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1284</width>
-    <height>605</height>
+    <width>1215</width>
+    <height>755</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Analyzer</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGraphicsView" name="graphicsView">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>0</y>
-      <width>911</width>
-      <height>541</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="graphicsView_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>0</y>
-      <width>331</width>
-      <height>211</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QTreeView" name="treeView">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>220</y>
-      <width>331</width>
-      <height>321</height>
+      <y>200</y>
+      <width>256</width>
+      <height>491</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="thumbnailView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>256</width>
+      <height>192</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="mainView">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>0</y>
+      <width>911</width>
+      <height>691</height>
      </rect>
     </property>
    </widget>
@@ -50,59 +50,45 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1284</width>
+     <width>1215</width>
      <height>29</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile">
+   <widget class="QMenu" name="menu_File">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="action_New"/>
-    <addaction name="action_Open"/>
     <addaction name="action_Save"/>
     <addaction name="action_Save_As"/>
-    <addaction name="action_Save_All"/>
     <addaction name="separator"/>
     <addaction name="action_Exit"/>
    </widget>
-   <widget class="QMenu" name="menuUnit">
+   <widget class="QMenu" name="menu_Unit_Settings">
     <property name="title">
-     <string>Unit Settings</string>
+     <string>&amp;Unit Settings</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menuCamera_Settings">
+   <widget class="QMenu" name="menu_Camera_Settings">
     <property name="title">
-     <string>Camera Settings</string>
+     <string>&amp;Camera Settings</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menuGo">
+   <widget class="QMenu" name="menu_Options">
     <property name="title">
-     <string>Go</string>
+     <string>&amp;Options</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menuRevision">
+   <widget class="QMenu" name="menu_Help">
     <property name="title">
-     <string>Revision</string>
+     <string>&amp;Help</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menuOptions">
-    <property name="title">
-     <string>Options</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-   </widget>
-   <addaction name="menuFile"/>
-   <addaction name="menuUnit"/>
-   <addaction name="menuCamera_Settings"/>
-   <addaction name="menuGo"/>
-   <addaction name="menuRevision"/>
-   <addaction name="menuOptions"/>
-   <addaction name="menuHelp"/>
+   <addaction name="menu_File"/>
+   <addaction name="menu_Unit_Settings"/>
+   <addaction name="menu_Camera_Settings"/>
+   <addaction name="menu_Options"/>
+   <addaction name="menu_Help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_New">
@@ -125,11 +111,6 @@
     <string>&amp;Save As</string>
    </property>
   </action>
-  <action name="action_Save_All">
-   <property name="text">
-    <string>&amp;Save All</string>
-   </property>
-  </action>
   <action name="action_Exit">
    <property name="text">
     <string>&amp;Exit</string>
@@ -145,12 +126,28 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
+     <x>114</x>
+     <y>124</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_New</sender>
+   <signal>triggered()</signal>
+   <receiver>thumbnailView</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>641</x>
-     <y>302</y>
+     <x>137</x>
+     <y>124</y>
     </hint>
    </hints>
   </connection>
