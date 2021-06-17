@@ -12,4 +12,3 @@ Analyzer::~Analyzer()
 {
     delete ui;
 }
-

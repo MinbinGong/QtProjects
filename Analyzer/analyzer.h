@@ -15,6 +15,9 @@ public:
     Analyzer(QWidget *parent = nullptr);
     ~Analyzer();
 
+private slots:
+    void on_graphicsView_customContextMenuRequested(const QPoint &pos);
+
 private:
     Ui::Analyzer *ui;
 };
