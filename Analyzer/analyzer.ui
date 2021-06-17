@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1362</width>
+    <width>1284</width>
     <height>605</height>
    </rect>
   </property>
@@ -17,24 +17,31 @@
    <widget class="QGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>350</x>
       <y>0</y>
-      <width>991</width>
+      <width>911</width>
       <height>541</height>
      </rect>
     </property>
    </widget>
-   <widget class="QScrollBar" name="verticalScrollBar">
+   <widget class="QGraphicsView" name="graphicsView_2">
     <property name="geometry">
      <rect>
-      <x>1330</x>
+      <x>10</x>
       <y>0</y>
-      <width>21</width>
-      <height>541</height>
+      <width>331</width>
+      <height>211</height>
      </rect>
     </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
+   </widget>
+   <widget class="QTreeView" name="treeView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>220</y>
+      <width>331</width>
+      <height>321</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -43,7 +50,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1362</width>
+     <width>1284</width>
      <height>29</height>
     </rect>
    </property>
