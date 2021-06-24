@@ -1,13 +1,23 @@
-#include "camera.h"
+#include "analyzer.h"
 
 #include <QApplication>
+#include <QLocale>
+#include <QTranslator>
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
+    QApplication a(argc, argv);
 
-    Camera camera;
-    camera.show();
-
-    return app.exec();
+    QTranslator translator;
+    const QStringList uiLanguages = QLocale::system().uiLanguages();
+    for (const QString &locale : uiLanguages) {
+        const QString baseName = "Analyzer_" + QLocale(locale).name();
+        if (translator.load(":/i18n/" + baseName)) {
+            a.installTranslator(&translator);
+            break;
+        }
+    }
+    Analyzer w;
+    w.show();
+    return a.exec();
 }
