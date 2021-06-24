@@ -1,9 +1,12 @@
 #include "analyzer.h"
+#include "analyzer_worker.h"
 #include "ui_analyzer.h"
 
 #include <QCameraInfo>
 #include <QGraphicsView>
 #include <QString>
+#include <QPixmap>
+#include <QFileDialog>
 
 Analyzer::Analyzer(QWidget *parent)
     : QMainWindow(parent)
@@ -40,19 +43,29 @@ void Analyzer::on_capture_clicked()
     m_imageCapture->capture();
 }
 
+void Analyzer::on_analyze_clicked()
+{
+    analyzer_worker *worker = new analyzer_worker();
+
+    worker->execute(this, file);
+
+    delete worker;
+}
 
 void Analyzer::on_save_clicked()
 {
-    QString fileName=QFileDialog::getSaveFileName(this, tr("save file"), QDir::homePath(), tr("jpegfile(*.jpg)"));
-    if(fileName.isEmpty()) {
+    QString fileName = QFileDialog::getSaveFileName(this, tr("save file"), QDir::homePath(), tr("jpegfile(*.jpg)"));
+    if(fileName.isEmpty())
+    {
         ui->statusbar->showMessage(tr("save canceled"), 5000);
     }
-    return;
-}
 
-void Analyzer::on_analyze_clicked()
-{
-
+    const QPixmap *pixmap = ui->zoomLabel->pixmap();
+    if (nullptr != pixmap)
+    {
+        file = fileName;
+        pixmap->save(fileName);
+    }
 }
 
 void Analyzer::on_imageCaptured(int id, const QImage &preview)
@@ -62,5 +75,5 @@ void Analyzer::on_imageCaptured(int id, const QImage &preview)
     int height = ui->zoomLabel->height();
     QPixmap pixmap = QPixmap::fromImage(preview);
     QPixmap fitPixmap = pixmap.scaled(width, height, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-    ui->zoomLabel->setPixmap(fitPixmap);
+    ui->zoomLabel->setPixmap(pixmap);
 }

@@ -5,9 +5,7 @@
 #include <QCamera>
 #include <QCameraViewfinder>
 #include <QCameraImageCapture>
-#include <QCameraInfo>
-#include <QFileDialog>
-#include <QAction>
+#include <QString>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Analyzer; }
@@ -26,15 +24,15 @@ private slots:
 
     void on_capture_clicked();
 
-    void on_save_clicked();
-
     void on_analyze_clicked();
+
+    void on_save_clicked();
 
 private:
     Ui::Analyzer *ui;
+    QString file;
 
     QList<QCameraInfo> m_cameras;
-
     QCamera *m_camera;
     QCameraViewfinder *m_viewfinder;
     QCameraImageCapture *m_imageCapture;

@@ -7,41 +7,69 @@
     <x>0</x>
     <y>0</y>
     <width>1243</width>
-    <height>631</height>
+    <height>764</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Analyzer</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <widget class="QComboBox" name="cameraType">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>10</y>
+      <width>291</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QLabel" name="cameraLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Cameras</string>
+    </property>
+   </widget>
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>10</y>
+      <x>390</x>
+      <y>60</y>
       <width>831</width>
-      <height>561</height>
+      <height>651</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="imageView"/>
    </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>40</y>
-      <width>371</width>
-      <height>531</height>
+      <x>390</x>
+      <y>10</y>
+      <width>831</width>
+      <height>33</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QLabel" name="zoomLabel">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="capture">
        <property name="font">
@@ -96,28 +124,39 @@
      </item>
     </layout>
    </widget>
-   <widget class="QComboBox" name="cameraType">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>980</x>
-      <y>0</y>
-      <width>211</width>
-      <height>31</height>
+      <x>10</x>
+      <y>60</y>
+      <width>371</width>
+      <height>271</height>
      </rect>
     </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="zoomLabel">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <widget class="QLabel" name="cameraLabel">
+   <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>910</x>
-      <y>10</y>
-      <width>71</width>
-      <height>21</height>
+      <x>10</x>
+      <y>340</y>
+      <width>371</width>
+      <height>371</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Cameras</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QListView" name="listView"/>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -126,8 +165,14 @@
      <x>0</x>
      <y>0</y>
      <width>1243</width>
-     <height>29</height>
+     <height>27</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
@@ -143,7 +188,6 @@
     <property name="title">
      <string>Settings</string>
     </property>
-    <addaction name="actionUnit_Settings"/>
    </widget>
    <widget class="QMenu" name="menuCorrection">
     <property name="title">
@@ -154,7 +198,6 @@
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="action_About"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuSettings"/>
@@ -166,30 +209,29 @@
    <property name="text">
     <string>&amp;New</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
   </action>
   <action name="action_Save">
    <property name="text">
     <string>&amp;Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="action_Save_As">
    <property name="text">
     <string>&amp;Save As</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
   </action>
   <action name="action_Exit">
    <property name="text">
     <string>&amp;Exit</string>
-   </property>
-  </action>
-  <action name="actionUnit_Settings">
-   <property name="text">
-    <string>Unit Settings</string>
-   </property>
-  </action>
-  <action name="action_About">
-   <property name="text">
-    <string>&amp;About</string>
    </property>
   </action>
  </widget>
