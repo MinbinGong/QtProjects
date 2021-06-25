@@ -24,12 +24,12 @@ FORMS += \
 
 #INCLUDEPATH += C:\opencv\build\include
 
-#LIBS += C:\opencv\build\bin\libopencv_core3414.dll
-#LIBS += C:\opencv\build\bin\libopencv_highgui3414.dll
-#LIBS += C:\opencv\build\bin\libopencv_imgcodecs3414.dll
-#LIBS += C:\opencv\build\bin\libopencv_imgproc3414.dll
-#LIBS += C:\opencv\build\bin\libopencv_features2d3414.dll
-#LIBS += C:\opencv\build\bin\libopencv_calib3d3414.dll
+#LIBS += C:\opencv_sdk\x64\mingw\lib\libopencv_core3414.dll.a
+#LIBS += C:\opencv_sdk\x64\mingw\lib\libopencv_highgui3414.dll.a
+#LIBS += C:\opencv_sdk\x64\mingw\lib\libopencv_imgcodecs3414.dll.a
+#LIBS += C:\opencv_sdk\x64\mingw\lib\libopencv_imgproc3414.dll.a
+#LIBS += C:\opencv_sdk\x64\mingw\lib\libopencv_features2d3414.dll.a
+#LIBS += C:\opencv_sdk\x64\mingw\lib\libopencv_calib3d3414.dll.a
 
 INCLUDEPATH += $$(OPENCV_SDK_DIR)/include
 
