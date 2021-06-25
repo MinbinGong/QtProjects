@@ -29,7 +29,7 @@ Analyzer::Analyzer(QWidget *parent)
     m_camera->setViewfinder(m_viewfinder);
     m_camera->start();
 
-    connect(m_imageCapture, SIGNAL(imageCaptured(int, QImage)), this, SLOT(on_imageCaptured(int, QImage)));
+    connect(m_imageCapture, SIGNAL(imageCaptured(int,QImage)), this, SLOT(on_imageCaptured(int,QImage)));
 }
 
 Analyzer::~Analyzer()
