@@ -49,7 +49,11 @@ void Analyzer::on_analyze_clicked()
 {
     analyzer_worker *worker = new analyzer_worker();
 
-    worker->execute(this, m_reference, m_capture);
+    bool result = worker->execute(this, m_reference, m_capture);
+    if (result)
+    {
+        ui->statusbar->showMessage(tr("Qualified"));
+    }
 
     delete worker;
 }
@@ -68,6 +72,8 @@ void Analyzer::on_select_clicked()
     int height = ui->reference->height();
     QPixmap fitPixmap = pixmap->scaled(width, height, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
     ui->reference->setPixmap(fitPixmap);
+
+    delete pixmap;
 }
 
 void Analyzer::on_imageCaptured(int id, const QImage &preview)

@@ -14,10 +14,12 @@ public:
     analyzer_worker();
     virtual ~analyzer_worker() {}
 
-    void execute(QWidget *parent, const QString &reference, const QImage &target);
+    bool execute(QWidget *parent, const QString &reference, const QImage &target);
 
 private:
     cv::Mat convert_opencv_mat( const QImage &inImage, bool inCloneImageData = true);
+
+    bool compareImage(const cv::Mat &src, const cv::Mat &dst);
 };
 
 #endif // ANALYZER_WORKER_H

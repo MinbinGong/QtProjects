@@ -7,10 +7,9 @@ analyzer_worker::analyzer_worker()
 
 }
 
-void analyzer_worker::execute(QWidget *parent, const QString &reference, const QImage &target)
+bool analyzer_worker::execute(QWidget *parent, const QString &reference, const QImage &target)
 {
     Q_UNUSED(parent);
-    Q_UNUSED(target);
 
     cv::Mat imageRef = cv::imread(reference.toStdString(), 1);
     cv::namedWindow("Reference Image");
@@ -19,6 +18,8 @@ void analyzer_worker::execute(QWidget *parent, const QString &reference, const Q
     cv::Mat imageTarget = convert_opencv_mat(target);
     cv::namedWindow("Target Image");
     cv::imshow("Target Image", imageTarget);
+
+    return compareImage(imageRef, imageTarget);
 }
 
 cv::Mat analyzer_worker::convert_opencv_mat(const QImage &inImage, bool inCloneImageData)
@@ -79,4 +80,12 @@ cv::Mat analyzer_worker::convert_opencv_mat(const QImage &inImage, bool inCloneI
     }
 
     return cv::Mat();
+}
+
+bool analyzer_worker::compareImage(const cv::Mat &src, const cv::Mat &dst)
+{
+    Q_UNUSED(src);
+    Q_UNUSED(dst);
+
+    return true;
 }
