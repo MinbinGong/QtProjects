@@ -8,10 +8,14 @@ analyzer_worker::analyzer_worker()
 
 }
 
-void analyzer_worker::execute(QWidget *parent, const QString &fileName)
+void analyzer_worker::execute(QWidget *parent, const QString &reference, const QString &target)
 {
     Q_UNUSED(parent);
-    cv::Mat image = cv::imread(fileName.toStdString(), 1);
-    cv::namedWindow("My Image");
-    cv::imshow("My Image", image);
+    cv::Mat imageRef = cv::imread(reference.toStdString(), 1);
+    cv::namedWindow("Reference Image");
+    cv::imshow("Reference Image", imageRef);
+
+    cv::Mat imageTarget = cv::imread(target.toStdString(), 1);
+    cv::namedWindow("Reference Image");
+    cv::imshow("Reference Image", imageTarget);
 }

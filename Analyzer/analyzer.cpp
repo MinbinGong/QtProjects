@@ -5,8 +5,9 @@
 #include <QCameraInfo>
 #include <QGraphicsView>
 #include <QString>
-#include <QPixmap>
 #include <QFileDialog>
+#include <QPixmap>
+#include <QStandardPaths>
 
 Analyzer::Analyzer(QWidget *parent)
     : QMainWindow(parent)
@@ -47,25 +48,25 @@ void Analyzer::on_analyze_clicked()
 {
     analyzer_worker *worker = new analyzer_worker();
 
-    worker->execute(this, file);
+    worker->execute(this, m_reference, m_capture);
 
     delete worker;
 }
 
-void Analyzer::on_save_clicked()
+void Analyzer::on_select_clicked()
 {
-    QString fileName = QFileDialog::getSaveFileName(this, tr("save file"), QDir::homePath(), tr("jpegfile(*.jpg)"));
-    if(fileName.isEmpty())
+    m_reference = QFileDialog::getOpenFileName(this, tr("select file"), QDir::homePath(), tr("jpegfile(*.jpg)"));
+    if(m_reference.isEmpty())
     {
-        ui->statusbar->showMessage(tr("save canceled"), 5000);
+        ui->statusbar->showMessage(tr("select canceled"), 5000);
     }
 
-    const QPixmap *pixmap = ui->zoomLabel->pixmap();
-    if (nullptr != pixmap)
-    {
-        file = fileName;
-        pixmap->save(fileName);
-    }
+    QPixmap *pixmap = new QPixmap();
+    pixmap->load(m_reference);
+    int width = ui->reference->width();
+    int height = ui->reference->height();
+    QPixmap fitPixmap = pixmap->scaled(width, height, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+
 }
 
 void Analyzer::on_imageCaptured(int id, const QImage &preview)
@@ -76,4 +77,11 @@ void Analyzer::on_imageCaptured(int id, const QImage &preview)
     QPixmap pixmap = QPixmap::fromImage(preview);
     QPixmap fitPixmap = pixmap.scaled(width, height, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
     ui->zoomLabel->setPixmap(pixmap);
+
+    if (!pixmap.isNull())
+    {
+        QStringList paths = QStandardPaths::standardLocations(QStandardPaths::TempLocation);
+        m_capture =  paths[0] + "tmp.jpg";
+        pixmap.save(m_capture);
+    }
 }

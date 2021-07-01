@@ -26,11 +26,12 @@ private slots:
 
     void on_analyze_clicked();
 
-    void on_save_clicked();
+    void on_select_clicked();
 
 private:
     Ui::Analyzer *ui;
-    QString file;
+    QString m_reference;
+    QString m_capture;
 
     QList<QCameraInfo> m_cameras;
     QCamera *m_camera;

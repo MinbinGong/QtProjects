@@ -10,7 +10,7 @@ public:
     analyzer_worker();
     virtual ~analyzer_worker() {}
 
-    void execute(QWidget *parent, const QString &fileName);
+    void execute(QWidget *parent, const QString &reference, const QString &target);
 };
 
 #endif // ANALYZER_WORKER_H

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1243</width>
-    <height>764</height>
+    <width>1442</width>
+    <height>695</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -54,8 +54,8 @@
      <rect>
       <x>390</x>
       <y>60</y>
-      <width>831</width>
-      <height>651</height>
+      <width>1031</width>
+      <height>571</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="imageView"/>
@@ -66,10 +66,23 @@
       <x>390</x>
       <y>10</y>
       <width>831</width>
-      <height>33</height>
+      <height>40</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="select">
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Select</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QPushButton" name="capture">
        <property name="font">
@@ -80,19 +93,6 @@
        </property>
        <property name="text">
         <string>Capture</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="save">
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Save</string>
        </property>
       </widget>
      </item>
@@ -135,7 +135,7 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QLabel" name="zoomLabel">
+      <widget class="QLabel" name="reference">
        <property name="text">
         <string/>
        </property>
@@ -149,12 +149,16 @@
       <x>10</x>
       <y>340</y>
       <width>371</width>
-      <height>371</height>
+      <height>291</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <widget class="QListView" name="listView"/>
+      <widget class="QLabel" name="zoomLabel">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -164,8 +168,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1243</width>
-     <height>27</height>
+     <width>1442</width>
+     <height>32</height>
     </rect>
    </property>
    <property name="font">
