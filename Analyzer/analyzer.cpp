@@ -8,6 +8,7 @@
 #include <QFileDialog>
 #include <QPixmap>
 #include <QStandardPaths>
+#include <QMessageBox>
 
 Analyzer::Analyzer(QWidget *parent)
     : QMainWindow(parent)
@@ -66,22 +67,17 @@ void Analyzer::on_select_clicked()
     int width = ui->reference->width();
     int height = ui->reference->height();
     QPixmap fitPixmap = pixmap->scaled(width, height, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-
+    ui->reference->setPixmap(fitPixmap);
 }
 
 void Analyzer::on_imageCaptured(int id, const QImage &preview)
 {
     Q_UNUSED(id);
+    m_capture = preview;
+
     int width = ui->zoomLabel->width();
     int height = ui->zoomLabel->height();
     QPixmap pixmap = QPixmap::fromImage(preview);
     QPixmap fitPixmap = pixmap.scaled(width, height, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
     ui->zoomLabel->setPixmap(pixmap);
-
-    if (!pixmap.isNull())
-    {
-        QStringList paths = QStandardPaths::standardLocations(QStandardPaths::TempLocation);
-        m_capture =  paths[0] + "tmp.jpg";
-        pixmap.save(m_capture);
-    }
 }

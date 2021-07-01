@@ -31,7 +31,7 @@ private slots:
 private:
     Ui::Analyzer *ui;
     QString m_reference;
-    QString m_capture;
+    QImage m_capture;
 
     QList<QCameraInfo> m_cameras;
     QCamera *m_camera;
