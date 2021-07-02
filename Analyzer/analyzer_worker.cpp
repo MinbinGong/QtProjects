@@ -162,5 +162,21 @@ int analyzer_worker::target_dectation(std::string path)
     cv::imshow("thr", imageThr);
     cv::waitKey(0);
 
+    //通过连通组件算法分割
+    cv::Mat labels, stats, centroids;
+    int num_objects = cv::connectedComponentsWithStats(imageThr, labels, stats, centroids);
+    if (num_objects < 2)
+    {
+        return 0;
+    }
+
+    //展示图像分割结果
+    cv::Mat output = cv::Mat::zeros(imageThr.rows, imageThr.cols, CV_8UC3);
+    cv::RNG rands(0xFFFFFFFF);
+    for (int i = 1; i < num_objects; ++i)
+    {
+        cv::Mat mask = labels == i;
+//        output.setTo(randomColor(rands), mask);
+    }
     return 0;
 }
