@@ -18,8 +18,11 @@ public:
 
 private:
     cv::Mat convert_opencv_mat( const QImage &inImage, bool inCloneImageData = true);
-
-    bool compareImage(const cv::Mat &src, const cv::Mat &dst);
+    bool compare_image(const cv::Mat &src, const cv::Mat &dst);
+    cv::Mat calculate_light_pattern(cv::Mat img);
+    cv::Mat remove_light(cv::Mat img, cv::Mat pattern);
+    cv::Mat prepare_image(cv::Mat input);
+    int target_dectation(std::string path);
 };
 
 #endif // ANALYZER_WORKER_H
