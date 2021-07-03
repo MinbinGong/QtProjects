@@ -167,7 +167,7 @@ int analyzer_worker::target_dectation(std::string path)
     int num_objects = cv::connectedComponentsWithStats(imageThr, labels, stats, centroids);
     if (num_objects < 2)
     {
-        return 0;
+        return -1;
     }
 
     //展示图像分割结果
@@ -176,7 +176,62 @@ int analyzer_worker::target_dectation(std::string path)
     for (int i = 1; i < num_objects; ++i)
     {
         cv::Mat mask = labels == i;
-//        output.setTo(randomColor(rands), mask);
+        output.setTo(random_color(rands), mask);
+
+        std::stringstream ss;
+        ss << "area: " << stats.at<int>(i, cv::CC_STAT_AREA);
+
+        cv::putText(output, ss.str(), centroids.at<cv::Point2d>(i),
+                    cv::FONT_HERSHEY_SIMPLEX, 0.4, cv::Scalar(255, 255, 255));
     }
+
+    cv::imshow("Result", output);
+    cv::waitKey(0);
     return 0;
 }
+
+cv::Scalar analyzer_worker::random_color(cv::RNG &rng)
+{
+    int color = (unsigned)rng;
+    return cv::Scalar(color&255, (color >> 8)&255, (color >> 16) & 255);
+}
+
+//std::vector<std::vector<float>> analyzer_worker::extract_features(cv::Mat img, std::vector<int> &left, std::vector<int> &top)
+//{
+//    std::vector<std::vector<cv::Point>> contours;
+//    std::vector<cv::Vec4i> hierarchy;
+//    cv::Mat input = img.clone();
+//    cv::findContours(input, contours, hierarchy, cv::RETR_CCOMP, cv::CHAIN_APPROX_SIMPLE);
+//    if (contours.size() == 0)
+//    {
+//        return std::vector<std::vector<float>>();
+//    }
+
+//    std::vector<std::vector<float>> output{};
+//    cv::RNG rng(0xFFFFFFFF);
+//    for (unsigned int i = 0; i < contours.size(); ++i)
+//    {
+//        cv::Mat mask = cv::Mat::zeros(img.rows, img.cols, CV_8UC1);
+//        //使用值1绘制形状，可以求和统计面积
+//        cv::drawContours(mask, contours, i, cv::Scalar(1), cv::FILLED, cv::LINE_8, hierarchy, 1);
+//        cv::Scalar area_s = cv::sum(mask);
+//        float area = area_s[0];
+//        float MIN_AREA = 500;
+//        if (area > MIN_AREA)
+//        {
+//            cv::RotatedRect r = cv::minAreaRect(contours[i]);
+//            float width = r.size.width;
+//            float height = r.size.height;
+//            //第二个特征纵横比
+//            float ar = (width < height) ? height / width : width / height;
+//            std::vector<float> row;
+//            row.push_back(area);
+//            row.push_back(ar);
+//            output.push_back(row);
+//            left.push_back(r.center.x);
+//            top.push_back((int)r.center.x);
+//        }
+//    }
+
+//    return output;
+//}

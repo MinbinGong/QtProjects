@@ -23,6 +23,8 @@ private:
     cv::Mat remove_light(cv::Mat img, cv::Mat pattern);
     cv::Mat prepare_image(cv::Mat input);
     int target_dectation(std::string path);
+    cv::Scalar random_color(cv::RNG &rng);
+//    std::vector<std::vector<float>> extract_features(cv::Mat img, std::vector<int> &left, std::vector<int> &top);
 };
 
 #endif // ANALYZER_WORKER_H
