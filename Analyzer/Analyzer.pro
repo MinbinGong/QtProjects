@@ -33,7 +33,10 @@ LIBS += -L$$(OPENCV_SDK_DIR)/x64/mingw/lib  \
         -lopencv_imgcodecs3414              \
         -lopencv_imgproc3414                \
         -lopencv_features2d3414             \
-        -lopencv_calib3d3414
+        -lopencv_flann3414                   \
+        -lopencv_calib3d3414                \
+        -lopencv_video3414                  \
+        -lopencv_videoio3414
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

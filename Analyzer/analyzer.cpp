@@ -50,9 +50,10 @@ void Analyzer::on_analyze_clicked()
     analyzer_worker *worker = new analyzer_worker();
 
     bool result = worker->execute(this, m_reference, m_capture);
-    if (result)
-    {
+    if (result) {
         ui->statusbar->showMessage(tr("Qualified"));
+    } else {
+        ui->statusbar->showMessage(tr("NOT qualified"));
     }
 
     delete worker;
@@ -84,6 +85,9 @@ void Analyzer::on_imageCaptured(int id, const QImage &preview)
     int width = ui->zoomLabel->width();
     int height = ui->zoomLabel->height();
     QPixmap pixmap = QPixmap::fromImage(preview);
+    if (pixmap.isNull()) {
+        ui->statusbar->showMessage(tr("Fail to capture."), 5000);
+    }
     QPixmap fitPixmap = pixmap.scaled(width, height, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-    ui->zoomLabel->setPixmap(pixmap);
+    ui->zoomLabel->setPixmap(fitPixmap);
 }
