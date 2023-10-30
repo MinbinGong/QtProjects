@@ -40,7 +40,9 @@ Analyzer::~Analyzer()
 }
 
 void Analyzer::on_capture_clicked()
-{
+{//    cv::namedWindow("Target Image");
+    //    cv::imshow("Target Image", target_img);
+
     ui->statusbar->showMessage(tr("Capturing..."), 1000);
     m_imageCapture->capture();
 }

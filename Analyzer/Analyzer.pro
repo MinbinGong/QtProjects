@@ -25,18 +25,18 @@ TRANSLATIONS += \
 CONFIG += lrelease
 CONFIG += embed_translations
 
-INCLUDEPATH += $$(OPENCV_SDK_DIR)/include
+INCLUDEPATH += /usr/local/include/opencv4
 
-LIBS += -L$$(OPENCV_SDK_DIR)/x64/mingw/lib  \
-        -lopencv_core3414                   \
-        -lopencv_highgui3414                \
-        -lopencv_imgcodecs3414              \
-        -lopencv_imgproc3414                \
-        -lopencv_features2d3414             \
-        -lopencv_flann3414                   \
-        -lopencv_calib3d3414                \
-        -lopencv_video3414                  \
-        -lopencv_videoio3414
+LIBS += -L/usr/local/lib  \
+        -lopencv_core                   \
+        -lopencv_highgui                \
+        -lopencv_imgcodecs              \
+        -lopencv_imgproc                \
+        -lopencv_features2d             \
+        -lopencv_flann                  \
+        -lopencv_calib3d                \
+        -lopencv_video                  \
+        -lopencv_videoio
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
