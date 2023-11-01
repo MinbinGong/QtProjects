@@ -40,7 +40,8 @@ Analyzer::~Analyzer()
 }
 
 void Analyzer::on_capture_clicked()
-{//    cv::namedWindow("Target Image");
+{
+    //    cv::namedWindow("Target Image");
     //    cv::imshow("Target Image", target_img);
 
     ui->statusbar->showMessage(tr("Capturing..."), 1000);
@@ -64,9 +65,10 @@ void Analyzer::on_analyze_clicked()
 void Analyzer::on_select_clicked()
 {
     m_reference = QFileDialog::getOpenFileName(this, tr("select file"), QDir::homePath(), tr("jpegfile(*.jpg)"));
-    if(m_reference.isEmpty())
-    {
+    if(m_reference.isEmpty()) {
+        qDebug("select canceled");
         ui->statusbar->showMessage(tr("select canceled"), 5000);
+        return;
     }
 
     QPixmap *pixmap = new QPixmap();
