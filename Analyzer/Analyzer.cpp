@@ -1,5 +1,5 @@
-#include "analyzer.h"
-#include "analyzer_worker.h"
+#include "Analyzer.h"
+#include "AnalyzerWorker.h"
 #include "ui_analyzer.h"
 
 #include <QCameraInfo>
@@ -9,6 +9,7 @@
 #include <QPixmap>
 #include <QStandardPaths>
 #include <QMessageBox>
+#include <QUuid>
 
 Analyzer::Analyzer(QWidget *parent)
     : QMainWindow(parent)
@@ -41,9 +42,6 @@ Analyzer::~Analyzer()
 
 void Analyzer::on_capture_clicked()
 {
-    //    cv::namedWindow("Target Image");
-    //    cv::imshow("Target Image", target_img);
-
     ui->statusbar->showMessage(tr("Capturing..."), 1000);
     m_imageCapture->capture();
 }
@@ -84,7 +82,6 @@ void Analyzer::on_select_clicked()
 void Analyzer::on_imageCaptured(int id, const QImage &preview)
 {
     Q_UNUSED(id);
-    m_capture = preview;
 
     int width = ui->zoomLabel->width();
     int height = ui->zoomLabel->height();
@@ -94,4 +91,23 @@ void Analyzer::on_imageCaptured(int id, const QImage &preview)
     }
     QPixmap fitPixmap = pixmap.scaled(width, height, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
     ui->zoomLabel->setPixmap(fitPixmap);
+
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Save the photo", "Save?", QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::No) {
+        qDebug("Yes not clicked");
+        return;
+    }
+
+    m_capture = QFileDialog::getExistingDirectory().append("/");
+    if (m_capture.isEmpty()) {
+        qDebug("Directory is empty");
+        return;
+    }
+
+    m_capture.append(QUuid::createUuid().toString(QUuid::WithoutBraces) + ".jpeg");
+//    qDebug("filename is %s", qPrintable(m_capture));
+    if (preview.save(m_capture, "JPEG")) {
+        qDebug("photo is saved as %s", qPrintable(m_capture));
+    }
 }

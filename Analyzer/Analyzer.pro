@@ -9,16 +9,18 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    analyzer_worker.cpp \
-    main.cpp \
-    analyzer.cpp
+    Analyzer.cpp \
+    AnalyzerWorker.cpp \
+    FaceDetector.cpp \
+    main.cpp
 
 HEADERS += \
-    analyzer.h \
-    analyzer_worker.h
+    Analyzer.h \
+    AnalyzerWorker.h \
+    FaceDetector.h
 
 FORMS += \
-    analyzer.ui
+    Analyzer.ui
 
 TRANSLATIONS += \
     Analyzer_zh_CN.ts
@@ -36,9 +38,13 @@ LIBS += -L/usr/local/lib  \
         -lopencv_flann                  \
         -lopencv_calib3d                \
         -lopencv_video                  \
-        -lopencv_videoio
+        -lopencv_videoio                \
+        -lopencv_objdetect
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    cascades/haarcascade_frontalface_default.xml

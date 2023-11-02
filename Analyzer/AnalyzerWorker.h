@@ -1,5 +1,5 @@
-#ifndef ANALYZER_WORKER_H
-#define ANALYZER_WORKER_H
+#ifndef ANALYZERWORKER_H
+#define ANALYZERWORKER_H
 
 #include <QString>
 #include <QWidget>
@@ -17,14 +17,10 @@ public:
     analyzer_worker();
     virtual ~analyzer_worker() {}
 
-    bool execute(QWidget *parent, const QString &reference, const QImage &target);
+    bool execute(QWidget *parent, const QString &reference, const QString &target);
 
 private:
-    void qimage_to_opencv_mat(const QImage &inImage, cv::Mat &outImage);
-    void opencv_mat_to_qimage(const cv::Mat &inImage, QImage &outImage);
     bool compare_image(const cv::Mat &src, const cv::Mat &dst);
-//    cv::Mat prepare_image(cv::Mat& input);
-//    void detect_pattern(cv::Mat& image, cv::Mat& templ);
 
 private:
     struct comparator {
@@ -36,4 +32,4 @@ private:
 
 };
 
-#endif // ANALYZER_WORKER_H
+#endif // ANALYZERWORKER_H

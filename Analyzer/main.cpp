@@ -1,4 +1,4 @@
-#include "analyzer.h"
+#include "Analyzer.h"
 
 #include <QApplication>
 #include <QLocale>
