@@ -20,10 +20,11 @@ public:
     bool execute(QWidget *parent, const QString &reference, const QImage &target);
 
 private:
-    cv::Mat convert_opencv_mat(const QImage &inImage, bool inCloneImageData = true);
+    void qimage_to_opencv_mat(const QImage &inImage, cv::Mat &outImage);
+    void opencv_mat_to_qimage(const cv::Mat &inImage, QImage &outImage);
     bool compare_image(const cv::Mat &src, const cv::Mat &dst);
-    cv::Mat prepare_image(cv::Mat& input);
-    void detect_pattern(cv::Mat& image, cv::Mat& templ);
+//    cv::Mat prepare_image(cv::Mat& input);
+//    void detect_pattern(cv::Mat& image, cv::Mat& templ);
 
 private:
     struct comparator {
