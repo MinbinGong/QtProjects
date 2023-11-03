@@ -1,5 +1,5 @@
-#include "Analyzer.h"
-#include "AnalyzerWorker.h"
+#include "analyzer.h"
+#include "analyzer_worker.h"
 #include "ui_analyzer.h"
 
 #include <QCameraInfo>

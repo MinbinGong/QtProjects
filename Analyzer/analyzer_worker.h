@@ -1,5 +1,5 @@
-#ifndef ANALYZERWORKER_H
-#define ANALYZERWORKER_H
+#ifndef ANALYZER_WORKER_H
+#define ANALYZER_WORKER_H
 
 #include <QString>
 #include <QWidget>
@@ -32,4 +32,4 @@ private:
 
 };
 
-#endif // ANALYZERWORKER_H
+#endif // ANALYZER_WORKER_H

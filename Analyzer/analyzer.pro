@@ -9,23 +9,18 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Analyzer.cpp \
-    AnalyzerWorker.cpp \
-    FaceDetector.cpp \
+    analyzer.cpp \
+    analyzer_worker.cpp \
     main.cpp
 
 HEADERS += \
-    Analyzer.h \
-    AnalyzerWorker.h \
-    FaceDetector.h
+    analyzer.h \
+    analyzer_worker.h
 
 FORMS += \
-    Analyzer.ui
+    analyzer.ui
 
-TRANSLATIONS += \
-    Analyzer_zh_CN.ts
 CONFIG += lrelease
-CONFIG += embed_translations
 
 INCLUDEPATH += /usr/local/include/opencv4
 

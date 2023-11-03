@@ -1,4 +1,4 @@
-#include "AnalyzerWorker.h"
+#include "analyzer_worker.h"
 
 #include <QMessageBox>
 
