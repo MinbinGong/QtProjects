@@ -6,6 +6,7 @@
 #include <QGraphicsView>
 #include <QTimer>
 #include <opencv2/video.hpp>
+#include <opencv2/videoio.hpp>
 //local include
 #include "facedetector.h"
 

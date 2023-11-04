@@ -2,7 +2,7 @@ QT       += core gui multimedia multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+CONFIG += c++17
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -10,12 +10,14 @@ CONFIG += c++11
 
 SOURCES += \
     analyzer.cpp \
-    analyzer_worker.cpp \
+    analyzerworker.cpp \
+    facedetector.cpp \
     main.cpp
 
 HEADERS += \
     analyzer.h \
-    analyzer_worker.h
+    analyzerworker.h \
+    facedetector.h
 
 FORMS += \
     analyzer.ui
