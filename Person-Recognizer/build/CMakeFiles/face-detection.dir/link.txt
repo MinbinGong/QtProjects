@@ -1,0 +1,1 @@
+/usr/bin/clang++-17 -g -rdynamic CMakeFiles/face-detection.dir/main.cpp.o -o face-detection 

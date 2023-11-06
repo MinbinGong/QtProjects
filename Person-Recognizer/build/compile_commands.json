@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/gongminbin/workspace/repos/Person-Recognizer/build",
+  "command": "/usr/bin/clang++-17   -g -o CMakeFiles/face-detection.dir/main.cpp.o -c /home/gongminbin/workspace/repos/Person-Recognizer/main.cpp",
+  "file": "/home/gongminbin/workspace/repos/Person-Recognizer/main.cpp"
+}
+]

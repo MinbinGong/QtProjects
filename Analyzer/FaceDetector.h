@@ -1,5 +1,10 @@
+/* 
+ * File:   FaceDetector.h
+ * Author: Eyal Arubas <EyalArubas at gmail>
+ */
+
 #ifndef FACEDETECTOR_H
-#define FACEDETECTOR_H
+#define	FACEDETECTOR_H
 
 #include <string>
 #include <opencv2/opencv.hpp>
@@ -12,11 +17,11 @@ using namespace cv;
 class FaceDetector {
 public:
     FaceDetector(
-        const string &cascadePath,
-        double scaleFactor,
-        int    minNeighbors,
-        double minSizeRatio,
-        double maxSizeRatio);
+            const string &cascadePath,
+            double scaleFactor,
+            int    minNeighbors,
+            double minSizeRatio,
+            double maxSizeRatio);
     virtual ~FaceDetector();
     void findFacesInImage(const Mat &img, vector<Rect> &res);
 private:
@@ -27,4 +32,5 @@ private:
     double _maxSizeRatio;
 };
 
-#endif // FACEDETECTOR_H
+#endif	/* FACEDETECTOR_H */
+

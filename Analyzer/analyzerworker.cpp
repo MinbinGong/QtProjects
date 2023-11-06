@@ -9,11 +9,24 @@
 #include <opencv2/features2d.hpp>
 #include <opencv2/flann/miniflann.hpp>
 
-#include <algorithm>
+#include <string>
+#include <fstream>
+
+#define CASCADE_PATH  "cascades/haarcascade_frontalface_default.xml"
+#define DET_SCALE_FACTOR   1.01
+#define DET_MIN_NEIGHBORS  40
+#define DET_MIN_SIZE_RATIO 0.06
+#define DET_MAX_SIZE_RATIO 0.18
 
 analyzer_worker::analyzer_worker()
+    : m_facedetector(std::string(CASCADE_PATH),
+                     DET_SCALE_FACTOR,
+                     DET_MIN_NEIGHBORS,
+                     DET_MIN_SIZE_RATIO,
+                     DET_MAX_SIZE_RATIO)
 {
-    faces.clear();
+    m_trainingset.clear();
+    m_faces.clear();
 }
 
 analyzer_worker::~analyzer_worker()
@@ -29,13 +42,6 @@ bool analyzer_worker::execute(QWidget *parent, const QString &reference, const Q
         return false;
     }
 
-    auto faces = detect(target_img);
-    if (faces->size() != 0) {
-        for (size_t i = 0; i < faces->size(); ++i) {
-            cv::rectangle(target_img, faces->at(i), cv::Scalar(255, 0, 0), 2);
-        }
-    }
-
     cv::namedWindow("Target Image");
     cv::imshow("Target Image", target_img);
 
@@ -47,26 +53,14 @@ bool analyzer_worker::execute(QWidget *parent, const QString &reference, const Q
     cv::namedWindow("Source Image");
     cv::imshow("Source Image", image_ref);
 
-    return compare_image(image_ref, target_img);
-}
-
-bool analyzer_worker::compare_image(const cv::Mat &src, const cv::Mat &dst)
-{
-    Q_UNUSED(src);
-    Q_UNUSED(dst);
-
     return true;
 }
 
-std::shared_ptr<std::vector<cv::Rect>> analyzer_worker::detect(const cv::Mat &src_image)
+void analyzer_worker::read_training_set(const std::string &list_path, std::vector<cv::Mat> &images)
 {
-    cv::Mat gray;
-    cv::cvtColor(src_image, gray, cv::COLOR_BGR2GRAY);
-    if (gray.empty() || faces.empty()) {
-        return {};
+    std::ifstream file(list_path.c_str());
+    std::string path;
+    while (std::getline(file, path)) {
+        images.push_back(cv::imread(path, IMREAD_GRAYSCALE));
     }
-
-    face_cascade.detectMultiScale(gray, faces);
-
-    return std::make_shared<std::vector<cv::Rect>>(faces);
 }
