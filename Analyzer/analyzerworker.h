@@ -9,8 +9,6 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/objdetect.hpp>
 
-#include "FaceDetector.h"
-
 #include <vector>
 //#include <memory>
 
@@ -23,12 +21,11 @@ public:
     bool execute(QWidget *parent, const QString &reference, const QString &target);
 
 private:
-    void read_training_set(const std::string &list_path, std::vector<cv::Mat> &images);
+    void detectAndDraw(cv::Mat &img);
 
 private:
-    FaceDetector m_facedetector;
-    std::vector<cv::Mat> m_trainingset;
-    std::vector<cv::Rect> m_faces;
+    cv::CascadeClassifier mCascade;
+    std::vector<cv::Rect> mFaces;
 };
 
 #endif // ANALYZERWORKER_H

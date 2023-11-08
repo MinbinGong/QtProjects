@@ -2,31 +2,22 @@
 
 #include <QMessageBox>
 #include <QLabel>
+#include <QDir>
 
 #include <opencv2/opencv.hpp>
+#include <opencv2/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/video/background_segm.hpp>
 #include <opencv2/features2d.hpp>
 #include <opencv2/flann/miniflann.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
 #include <string>
 #include <fstream>
 
-#define CASCADE_PATH  "cascades/haarcascade_frontalface_default.xml"
-#define DET_SCALE_FACTOR   1.01
-#define DET_MIN_NEIGHBORS  40
-#define DET_MIN_SIZE_RATIO 0.06
-#define DET_MAX_SIZE_RATIO 0.18
-
 analyzer_worker::analyzer_worker()
-    : m_facedetector(std::string(CASCADE_PATH),
-                     DET_SCALE_FACTOR,
-                     DET_MIN_NEIGHBORS,
-                     DET_MIN_SIZE_RATIO,
-                     DET_MAX_SIZE_RATIO)
 {
-    m_trainingset.clear();
-    m_faces.clear();
+    mFaces.clear();
 }
 
 analyzer_worker::~analyzer_worker()
@@ -42,6 +33,8 @@ bool analyzer_worker::execute(QWidget *parent, const QString &reference, const Q
         return false;
     }
 
+    detectAndDraw(target_img);
+
     cv::namedWindow("Target Image");
     cv::imshow("Target Image", target_img);
 
@@ -56,11 +49,17 @@ bool analyzer_worker::execute(QWidget *parent, const QString &reference, const Q
     return true;
 }
 
-void analyzer_worker::read_training_set(const std::string &list_path, std::vector<cv::Mat> &images)
+void analyzer_worker::detectAndDraw(cv::Mat &img)
 {
-    std::ifstream file(list_path.c_str());
-    std::string path;
-    while (std::getline(file, path)) {
-        images.push_back(cv::imread(path, IMREAD_GRAYSCALE));
-    }
+    QString currentPath = QDir::currentPath();
+    qDebug("current directory: %s", qPrintable(currentPath));
+
+//    mCascade.load("./cascades/haarcascade_frontface_alt.xml");
+
+//    cv::Mat gray;
+//    cv::cvtColor(img, gray, cv::COLOR_BGR2GRAY);
+//    mCascade.detectMultiScale(gray, mFaces);
+//    for (unsigned int i = 0; i < mFaces.size(); i++) {
+//        cv::rectangle(img, mFaces[i], cv::Scalar(255, 0, 0), 2);
+//    }
 }
